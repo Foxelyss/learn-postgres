@@ -9,8 +9,40 @@ parent: Первые шаги
 
 Виды моделей(этапы проектирования):
 1. Концептуальная
-2. Логическая(ER)
-3. Физическая(На базе СУБД)
+
+![Концептуальная модель](/assets/img/concept-1.png)
+
+{:style="counter-reset:step-counter 1"}
+1. Логическая(ER)
+![ER diagram](/assets/img/er-diagram.png)
+
+{:style="counter-reset:step-counter 2"}
+1. Физическая(На базе СУБД)
+
+Словарь данных:
+
+| **KEY** | **FIELD NAME** | **DATA TYPE / FIELD SIZE** | **REQUIRED?** | **NOTES**                                              |
+| ------- | -------------- | -------------------------- | ------------- | ------------------------------------------------------ |
+| PK      | **Code**       | VARCHAR (6)                | Y             |                                                        |
+|         | **LastName**   | VARCHAR (100)              | Y             |                                                        |
+|         | **FirstName**  | VARCHAR (50)               | Y             |                                                        |
+|         | **Patronymic** | VARCHAR (50)               | Y             |                                                        |
+|         | **Gender**     | CHAR(1)                    | Y             | Check Constraint  <br>(Допускается только 'F' или 'M') |
+|         | **Phone**      | VARCHAR (20)               | Y             |                                                        |
+|         | **Email**      | VARCHAR (50)               | Y             |                                                        |
+
+Код: 
+```sql
+create table client(
+Code	VARCHAR (6) primary key,
+LastName	VARCHAR (100) not null,
+FirstName	VARCHAR (50) not null,
+Patronymic	VARCHAR (50) not null
+Gender	CHAR(1) not null check(Gender in ('F', 'M')),
+Phone	VARCHAR (20) not null,
+Email	VARCHAR (50) not null
+);
+```
 
 Разновидности моделей БД:
 1. Иерархическая
