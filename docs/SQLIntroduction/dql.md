@@ -94,11 +94,57 @@ select extract(year from students.birthdate) from students
 
 ### `from`
 
+Действия во from
+1. Объявлять временные связи
 
+| Действие        | Описание                                                                            |
+| --------------- | ----------------------------------------------------------------------------------- |
+| inner join      | объединяет значения по одинаковым атрибутам в таблицах                              |
+| left join       | Объединяет таблицы по одинаковым атрибуам в таблицах + все данные из левой таблицы  |
+| right join      | Объединяет таблицы по одинаковым атрибуам в таблицах + все данные из правой таблицы |
+| full join(join) | Объединяет таблицы полностью                                                        |
 
-### `where`
+Общий вид:
+```sql
+from ИДТ inner/left/right/full 
+join ИДТ2 on ИДТ1.ИДС=ИДТ2.ИДС
+```
 
-### `join`
+Для 3 и более
+```sql
+from ИДТ inner/left/right/full 
+(inner/left/right/full join ИДТ2 on ИДТ2.ИДС=ИДТ3.ИДС) 
+join ИДТ2 on ИДТ1.ИДС=ИДТ2.ИДС
+```
+
+Примеры:
+```sql
+select * from students
+inner join grades.stud_id = students.id
+```
+
+```sql
+select * from teachers 
+(select * from students
+right join grades.stud_id = students.id) 
+inner join teachers.id = grades.teacher_id
+```
+
+{:style="counter-reset:step-counter 1"}
+2. Подзапрос
+
+```sql
+(select * from students
+right join grades.stud_id = students.id) 
+```
+Можно использовать в агрегир-ых ф-ях
+```sql
+select sum(select * from students
+right join grades.stud_id = students.id) 
+```
+### `where` - оператор условия
+
+Условие выполняется слево направо
 
 ### Подзапросы
 ### `group by`
@@ -106,3 +152,14 @@ select extract(year from students.birthdate) from students
 ### `having`
 
 ### `order by`
+
+
+### `limit` - ограничение количества записей
+```
+limit N -- Где N количество записей
+```
+
+### `offset` - смещение ответа на несколько записей
+```
+offset N -- Где N количество записей которые будут пропущены
+```
