@@ -1,8 +1,19 @@
 title: Learn Postgres
 description: Postgres это просто
 theme: just-the-docs
+lang: ru
+seo: true
 
 url: https://learn-postgres.foxelyss.ru
 
 aux_links:
   Repository: https://github.com/Foxelyss/learn-postgres
+
+exclude:
+  - README.md
+  - license
+  - jsconfig.json
+  - .gitignore
+
+plugins:
+  - jekyll-seo-tag
