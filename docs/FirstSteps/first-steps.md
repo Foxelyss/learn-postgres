@@ -1,6 +1,6 @@
 ---
 title: Первые шаги
-nav_order: 1
+nav_order: 2
 has_children: true
 layout: default
 permalink: /docs/first-steps

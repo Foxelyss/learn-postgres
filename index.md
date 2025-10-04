@@ -1,6 +1,7 @@
 ---
 title: Главная
 layout: home
+nav_order: 1
 ---
 
 Приветствуем на курсе изучения базы банных Postgres!
